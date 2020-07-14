@@ -1,0 +1,48 @@
+body{
+    background-color: black;
+    color: whitesmoke;
+    text-align: center;
+    padding: 5%;
+    margin: auto;
+}
+header{
+    width: 100%;
+    margin: 0;
+    padding-top: 0;
+   
+    /* background-image: url(Stranger-Things.jpg); */
+}
+ img{
+     width: 90%;
+ }
+
+
+ .btn{
+     margin:1%;
+     background-color: rgb(192, 21, 21);
+     color: whitesmoke;
+      
+     
+ }
+#quizQuestion{
+ margin: auto;
+ padding: 5px;
+
+}
+
+ #timer{
+    margin: auto;
+    margin-top:5%;
+    background-color: rgb(192, 21, 21);
+    width: 15%;
+    color: whitesmoke;
+    border: 2px solid white;
+    float: center;
+    
+     
+ }
+hr{
+    color: rgb(192, 21, 21);
+    width: 5px;
+}
+ 
