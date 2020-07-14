@@ -103,6 +103,11 @@ console.log(questions[0]["correct"]);
 //first question will be displayed
 // choosing questions by index describing position in the array
 var indexQ = 0;
+var timeEl = document.querySelector(".time");
+var secondsLeft = 80;
+var win = 0;
+var lost = 0;
+
 
 
 $("#start").on("click", function () {
@@ -110,6 +115,7 @@ $("#start").on("click", function () {
   $("h2").text("");
   $("#start").hide();
   $("#strangeth").hide();
+  
   setTime();
   nextQuestion()
 });
@@ -118,8 +124,7 @@ $("#start").on("click", function () {
  //if answer is correct, then it will deflect on amout of scores in var wins
  //if answer is wrong -var lost will increment and time will be substracted from the clock
 
-  var win = 0;
-  var lost = 0;
+  
 
 function checkedAnswer() {
   console.log($(this));
@@ -136,7 +141,7 @@ function checkedAnswer() {
   } else {
     lost++;
     console.log("You answered wrong"+ lost);
-    secondsLeft = secondsLeft-4
+    secondsLeft = secondsLeft-10
     $("#result").text("Nope,that one is wrong");
   }
   indexQ ++
@@ -144,8 +149,10 @@ function checkedAnswer() {
   if( questions.length > indexQ+1){
     nextQuestion()
    } else {
-       $("<h2>").text("GAME OVER")
-       secondsLeft = 0;
+
+    gameOver()
+    secondsLeft === 0
+       
    }
 }
  
@@ -177,23 +184,25 @@ function checkedAnswer() {
  }
 
 //5.Timer
-var timeEl = document.querySelector(".time");
-var secondsLeft = 200;
 
 function setTime() {
-  var timerInterval = setInterval(function() {
-    secondsLeft--;
-    timeEl.textContent = secondsLeft + " seconds left ";
-
-    if(secondsLeft === 0) {
-      clearInterval(timerInterval);
-      sendMessage();
-    }
-
-  }, 1000);
+    var timerInterval = setInterval(function () {
+      secondsLeft--;
+      timeEl.textContent = secondsLeft + " seconds left";
+  
+      if (secondsLeft === 0) {
+        clearInterval(timerInterval)
+         }
+         
+    }, 1000);
 }
 
-function sendMessage() {
-  timeEl.textContent = " TIME IS OVER";
+function gameOver(){
+    $("#quiz").empty()
+    $(".time").text("0 seconds")
+    $("#game-rules").hide()
+    $("<a href='Score.html' type='button' class='btn'>").text("GAME OVER").appendTo("#quiz")
+    $("<p>").text("Please click on the button to save your scores").appendTo("#quiz")
+   
 }
 
