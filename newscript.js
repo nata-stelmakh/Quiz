@@ -96,6 +96,8 @@ console.log(questions[0]["ans"][1]);
 console.log(questions[0]["ans"][3]);
 console.log(questions[0]["correct"]);
 
+// var highscores = localStorage.getItem(key,initials)
+
 //2.start function.
 //should be evoked when user clicks button start
 //Results of a function:
@@ -154,6 +156,7 @@ function checkedAnswer() {
     secondsLeft === 0
        
    }
+   return win
 }
  
 // 4 .After user chose an answer, app displays next question
@@ -192,6 +195,7 @@ function setTime() {
   
       if (secondsLeft === 0) {
         clearInterval(timerInterval)
+        gameOver()
          }
          
     }, 1000);
@@ -199,10 +203,26 @@ function setTime() {
 
 function gameOver(){
     $("#quiz").empty()
-    $(".time").text("0 seconds")
+    $(".time").empty().hide()
     $("#game-rules").hide()
     $("<a href='Score.html' type='button' class='btn'>").text("GAME OVER").appendTo("#quiz")
     $("<p>").text("Please click on the button to save your scores").appendTo("#quiz")
-   
-}
+    $("#winScores").text(win)
+    $("#questions").text(questions.length)
+
+  }
+
+  $("#winScores").text(win)
+  $("#questions").text(questions.length)
+
+  $("#submit").on("click",function(event){
+
+  console.log("Scores have been submitted")
+  var initials =$(this).parent().siblings("input").val() ;
+  var key = win;
+  console.log(initials);
+  console.log(key)
+  localStorage.setItem(key,initials)
+  $(this).parent().siblings("input").val("")
+})
 
