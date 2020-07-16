@@ -1,5 +1,6 @@
 https://nata-stelmakh.github.io/Quiz/
-![]()
+![](1.png)
+![](2.png)
 
 1.Quiz is made on the theme of a Stranger Things, copyrights for creators of the movie
 2.Quiz contains questions on JavaScript
