@@ -187,23 +187,24 @@ function checkedAnswer() {
  }
 
 //5.Timer
+var timerInterval
 
 function setTime() {
-    var timerInterval = setInterval(function () {
+
+  timerInterval = setInterval(function () {
       secondsLeft--;
       timeEl.textContent = secondsLeft + " seconds left";
   
       if (secondsLeft === 0) {
-        clearInterval(timerInterval)
-        gameOver()
+         gameOver()
          }
          
     }, 1000);
 }
 
 function gameOver(){
+    clearInterval(timerInterval)
     $("#quiz").empty()
-    $(".time").empty().hide()
     $("#game-rules").hide()
     $("<a href='Score.html' type='button' class='btn'>").text("GAME OVER").appendTo("#quiz")
     $("<p>").text("Please click on the button to save your scores").appendTo("#quiz")
@@ -222,7 +223,11 @@ function gameOver(){
   var key = win;
   console.log(initials);
   console.log(key)
-  localStorage.setItem(key,initials)
+
+  var newScore ={score:win,name:initials}
+  var highScores = JSON.parse(localStorage.getItem("highScores")) ||[]
+  highScores.push(newScore)
+  localStorage.setItem("highScores",JSON.stringify(highScores))
   $(this).parent().siblings("input").val("")
 })
 
