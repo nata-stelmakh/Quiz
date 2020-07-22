@@ -206,18 +206,25 @@ function gameOver(){
     clearInterval(timerInterval)
     $("#quiz").empty()
     $("#game-rules").hide()
-    $("<a href='Score.html' type='button' class='btn'>").text("GAME OVER").appendTo("#quiz")
+    $("<button id='gameOver' class='btn'>").text("GAME OVER").appendTo("#quiz")
     $("<p>").text("Please click on the button to save your scores").appendTo("#quiz")
-    $("#winScores").text(win)
-    $("#questions").text(questions.length)
+    
+    $('#gameOver').on('click',function(event){
+    $('#quiz').empty()
+    $('<h1>').text("You've made it!!!").appendTo('#quiz')
+    $('<p id="final_scores">').text('You scored '+ win + ' out of 8').appendTo('#quiz')  
+    $('<div class=container style="width: 60%;">').appendTo('#quiz')
+    $('<div class="input-group mb-3">  <input id =submitScores type="text" class="form-control" placeholder="Please enter your initials"  aria-describedby="basic-addon2"> <div class="input-group-append">  <button class="btn btn-outline-secondary" type="button" id="submit">').appendTo('.container')
+    $('#submit').text('Submit')
+  })
 
+    
   }
 
-  $("#winScores").text(win)
-  $("#questions").text(questions.length)
-
-  $("#submit").on("click",function(event){
-
+  
+  
+  $('#submit').on("click",function(event){
+  $('#submitscores').empty()
   console.log("Scores have been submitted")
   var initials =$(this).parent().siblings("input").val() ;
   var key = win;
